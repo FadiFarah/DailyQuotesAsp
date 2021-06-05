@@ -1,0 +1,44 @@
+﻿@model QuoteWebApp.Models.Quote
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
+<h2>Quote Post</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+
+
+        <div class="col-lg-12" align="center">
+            <span class="quote-subheader">
+                @Model.QuoteDate
+            </span>
+            <span class="quote-subheader">
+                •
+            </span>
+            <span class="quote-subheader">
+                @Model.QuoteAuthur
+            </span>
+            <h1 class="quote-header">
+                @Model.QuoteTitle
+            </h1>
+            <img class="quote-image" src="@Model.QuoteImageURL" />
+            <p class="quote-content">
+                @Model.QuoteDescription
+            </p>
+            @if (User != null && User.Identity.IsAuthenticated && User.Identity.Name==Model.UserName || User.IsInRole("admin"))
+            {
+                <button class="quote-button btn btn-dark">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>
+                <button class="quote-button btn btn-dark">@Html.ActionLink("Details", "Details", new { id = Model.Id })</button>
+                <button class="quote-button btn btn-dark">@Html.ActionLink("Delete", "Delete", new { id = Model.Id })</button>
+            }
+        </div>
+    
+
+</div>
+

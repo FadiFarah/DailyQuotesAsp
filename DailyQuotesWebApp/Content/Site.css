@@ -1,0 +1,95 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.quote {
+    margin-bottom: 50px;
+}
+.quote-subheader {
+    opacity: 0.5;
+    padding: 0 5px;
+    letter-spacing: 0.05rem;
+}
+.quote-header {
+    max-width: 490px;
+    font-family:sans-serif;
+    font-size:30px;
+}
+.quote-image{
+    width: 500px;
+    height:450px;
+}
+.quote-content{
+    padding:10px 30px;
+    max-width:450px;
+    font-size:15px;
+    letter-spacing:0.05rem;
+    opacity:0.3;
+}
+.quote-button{
+    padding:10px 20px;
+}
+.quote-readmore{
+    display:block;
+    color:black;
+    padding-top:10px;
+}
+.quote-textarea {
+
+    height: 100px;
+    width: 900px;
+}
+textarea{
+    width:100%;
+    height:100px;
+}
+
+.home-jumbotron {
+    background-color: #002b42;
+    background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+    color:white;
+}
+.navbar {
+    background-color: #002b42;
+    height:90px;
+}
+.navbar .container{
+    margin-top:22.5px;
+    font-size:22px;
+}
+.navbar-brand{
+    font-size:30px;
+
+}
+
+.navbar-nav{
+    margin:0 20px;
+}
+.navbar-nav.navbar-right{
+    margin:0 0;
+    padding:0 0;
+}
+.navbar-default {
+    background-color: white;
+}
+

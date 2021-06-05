@@ -1,0 +1,59 @@
+﻿@model QuoteWebApp.Models.Quote
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Quote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteImageURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteImageURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteAuthur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteAuthur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuoteDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuoteDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

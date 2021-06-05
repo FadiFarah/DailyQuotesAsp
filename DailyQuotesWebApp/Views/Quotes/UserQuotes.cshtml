@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QuoteWebApp.Models.Quote>
+
+@{
+    ViewBag.Title = "User Quotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="quote col-lg-12" align="center">
+            <span class="quote-subheader">
+                @item.QuoteDate
+            </span>
+            <span class="quote-subheader">
+                •
+            </span>
+            <span class="quote-subheader">
+                @item.QuoteAuthur
+            </span>
+            <h1 class="quote-header">
+                @item.QuoteTitle
+            </h1>
+            <img class="quote-image" src="@item.QuoteImageURL" />
+            <p class="quote-content">
+                @if(item.QuoteDescription.Length>100)
+                {
+                    @item.QuoteDescription.Substring(0, 100) <a class="quote-readmore">@Html.ActionLink("— Read More", "ReadMore", item)</a>
+                }
+                else
+                {
+                    @item.QuoteDescription
+                }
+            </p>
+            @if (User != null && User.Identity.IsAuthenticated)
+            {
+                <button class="quote-button btn btn-dark">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
+                <button class="quote-button btn btn-dark">@Html.ActionLink("Details", "Details", new { id = item.Id })</button>
+                <button class="quote-button btn btn-dark">@Html.ActionLink("Delete", "Delete", new { id = item.Id })</button>
+            }
+        </div>
+    }
+
+</div>

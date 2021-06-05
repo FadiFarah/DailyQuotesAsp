@@ -1,0 +1,102 @@
+﻿@model QuoteWebApp.Models.Quote
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Quote</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuoteTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.QuoteTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.QuoteTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuoteImageURL, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.QuoteImageURL, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.QuoteImageURL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuoteAuthur, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.QuoteAuthur, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.QuoteAuthur, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuoteDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.QuoteDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.QuoteDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.QuoteDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="quote-textarea col-md-10">
+            @Html.TextAreaFor(model => model.QuoteDescription, new { htmlAttributes = new { @class = "form-control textarea" } })
+            @Html.ValidationMessageFor(model => model.QuoteDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <a type="button" style="cursor:pointer" onclick="RandomQuote()">Generate a Random Quote</a>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function RandomQuote() {
+            fetch("https://quotes15.p.rapidapi.com/quotes/random/", {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": "daafd2adf0msh58b7f58ba9ebcc7p10bbd8jsn0e97df4fe0b8",
+                    "x-rapidapi-host": "quotes15.p.rapidapi.com"
+                }
+            })
+                .then(response => {
+                    response.json().then(data => {
+                        console.log(data.content);
+                        document.querySelector("textarea").innerText = data.content;
+                    });
+
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+    </script>
+}
