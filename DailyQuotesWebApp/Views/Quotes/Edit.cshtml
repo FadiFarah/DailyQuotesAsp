@@ -5,8 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<div class="home-jumbotron jumbotron">
+    <h1>Edit a Quote</h1>
+    <p class="lead">Here you can edit a specific quote.</p>
+</div>
 
+<div class="details">
 
 @using (Html.BeginForm())
 {
@@ -68,6 +72,7 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+</div>
 </div>
 
 @section Scripts {

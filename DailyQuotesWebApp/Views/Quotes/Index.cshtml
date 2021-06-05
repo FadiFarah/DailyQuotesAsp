@@ -5,13 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     <link href="~/Content/Site.css" rel="stylesheet" />
 }
+<div class="home-jumbotron jumbotron">
+    <h1>Quotes</h1>
+    <p class="lead">Here you can see everyone's quotes.</p>
+</div>
 
-<h2>Index</h2>
-
+<div class="details row">
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="row">
 
     @foreach (var item in Model)
     {

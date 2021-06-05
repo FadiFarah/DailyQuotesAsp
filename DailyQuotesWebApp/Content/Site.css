@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #D9FAFA;
+    font-family:'Rajdhani';
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -65,21 +67,21 @@ textarea{
 }
 
 .home-jumbotron {
-    background-color: #002b42;
-    background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
-    color:white;
+    background-color: #D1F0D5;
+    background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
+    color: black;
+    height: 400px;
+    box-shadow:0px 0px 50px black;
 }
 .navbar {
     background-color: #002b42;
-    height:90px;
+    
 }
-.navbar .container{
+.navbar-default .container{
     margin-top:22.5px;
-    font-size:22px;
 }
 .navbar-brand{
-    font-size:30px;
-
+    font-size:20px;
 }
 
 .navbar-nav{
@@ -90,6 +92,22 @@ textarea{
     padding:0 0;
 }
 .navbar-default {
-    background-color: white;
+    background-color: #D9FAFA;
+    height: 90px;
 }
-
+.details{
+    border-top:1px solid black;
+    padding:5% 2%;
+    margin-top:100px;
+}
+.lead{
+    background-color:rgba(209,240,213,0.5);
+    box-shadow:0px 5px 5px black;
+}
+.collapsing, .in {
+    background-color: #D9FAFA;
+}
+.details td, .details th{
+    padding-right:30px;
+    padding-bottom:20px;
+}
