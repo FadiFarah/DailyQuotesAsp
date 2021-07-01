@@ -16,7 +16,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-
         <div class="col-lg-12" align="center">
             <span class="quote-subheader">
                 @Model.QuoteDate
@@ -34,7 +33,7 @@
             <p class="quote-content">
                 @Model.QuoteDescription
             </p>
-            @if (User != null && User.Identity.IsAuthenticated && User.Identity.Name==Model.UserName || User.IsInRole("admin"))
+            @if (User != null && User.Identity.Name==Model.UserName || User.IsInRole("admin"))
             {
                 <button class="quote-button btn btn-dark">@Html.ActionLink("Edit", "Edit", new { id = Model.Id })</button>
                 <button class="quote-button btn btn-dark">@Html.ActionLink("Details", "Details", new { id = Model.Id })</button>

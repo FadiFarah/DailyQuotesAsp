@@ -9,6 +9,7 @@ namespace Web.Mongodb.Helper
 {
     public class MongoDbManager
     {
+       
         private static object sync = new object();
         private static MongoDbManager instance;
         private MongoClient Server; //MongoServer
@@ -17,9 +18,8 @@ namespace Web.Mongodb.Helper
         {
             var connectionString = "mongodb://127.0.0.1:27017"; //connection string from our local PC.
             Server = new MongoClient(connectionString);
-
             var database = Server.GetDatabase("db"); //Get the database by name
-             //get collection by name 'quotes' and map it to QuoteCollection
+            //get collection by name 'quotes' and map it to QuoteCollection
             QuoteCollection = database.GetCollection<Quote>("quotes");
         }
         public static MongoDbManager Instance
@@ -37,5 +37,7 @@ namespace Web.Mongodb.Helper
             }
             private set { }
         }
+
     }
+    
 }

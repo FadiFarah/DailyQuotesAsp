@@ -37,12 +37,7 @@ namespace QuoteWebApp.Controllers
         public ActionResult Index()
         {
             List<Quote> quoteList = MongoDbManager.Instance.QuoteCollection.AsQueryable().ToList();
-            List<Quote> results = new List<Quote>();
-            foreach (var quote in quoteList)
-            {
-                results.Add(quote);
-            }
-            return View(results);
+            return View(quoteList);
         }
         [Authorize]
         public ActionResult ReadMore(Quote quote)
@@ -83,8 +78,7 @@ namespace QuoteWebApp.Controllers
             quote.UserId = userId;
             quote.Id = Guid.NewGuid().ToString();
             quote.UserName = User.Identity.GetUserName().ToString();
-            MongoDbManager dbManager = MongoDbManager.Instance;
-            dbManager.QuoteCollection.InsertOne(quote);
+            MongoDbManager.Instance.QuoteCollection.InsertOne(quote);
             return RedirectToAction("Index");
         }
 
@@ -95,8 +89,6 @@ namespace QuoteWebApp.Controllers
         public ActionResult Edit(string id)
         {
             List<Quote> quoteList = MongoDbManager.Instance.QuoteCollection.AsQueryable().ToList();
-
-            MongoDbManager dbManager = MongoDbManager.Instance;
 
             Quote result = new Quote();
             foreach (var quote in quoteList)
@@ -118,8 +110,6 @@ namespace QuoteWebApp.Controllers
         [Authorize]
         public ActionResult Edit(Quote newQuote)
         {
-
-            MongoDbManager dbManager = MongoDbManager.Instance;
             List<Quote> quoteList = MongoDbManager.Instance.QuoteCollection.AsQueryable().ToList();
 
             Quote result = new Quote();
@@ -127,13 +117,12 @@ namespace QuoteWebApp.Controllers
             {
                 if (quote.Id == newQuote.Id)
                 {
-                    newQuote.Id = quote.Id;
                     newQuote.UserId = quote.UserId;
                     newQuote.UserName = quote.UserName;
                     BsonDocument oldQ = new BsonDocument(quote.ToBsonDocument());
                     BsonDocument newQ = new BsonDocument(newQuote.ToBsonDocument());
 
-                    dbManager.QuoteCollection.FindOneAndUpdate(oldQ,newQ);
+                    MongoDbManager.Instance.QuoteCollection.FindOneAndUpdate(oldQ,newQ);
                     return RedirectToAction("Index");
                 }
             }
@@ -163,18 +152,13 @@ namespace QuoteWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            MongoDbManager dbManager = MongoDbManager.Instance;
             List<Quote> quoteList = MongoDbManager.Instance.QuoteCollection.AsQueryable().ToList();
 
-            Quote result = new Quote();
             foreach (var quote in quoteList)
             {
                 if (quote.Id == id)
                 {
-                    BsonDocument b = new BsonDocument(quote.ToBsonDocument());
-                    
-                    dbManager.QuoteCollection.DeleteOne(b);
-                    result = quote;
+                    MongoDbManager.Instance.QuoteCollection.DeleteOne(quote.ToBsonDocument());
                     return RedirectToAction("Index");
                 }
             }
